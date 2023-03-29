@@ -9,6 +9,10 @@
   @page {
     size: A4;
   }
+
+  .function {
+    display: none;
+  }
 }
 
 .result {
@@ -24,9 +28,30 @@
   grid-template-rows: repeat(8, 4cm);
 }
 
+.result.barcode {
+  gap: 4rem;
+  grid-template-columns: repeat(3, 6cm);
+  grid-template-rows: repeat(6, 4cm);
+}
+
+.barcode-item {
+  height: min-content;
+}
+
+.barcode img {
+  width: 100%;
+  height: 1.5cm;
+}
+
 .item {
   width: 100%;
   height: 100%;
+}
+
+.imei-product {
+  font-size: 0.8rem;
+  font-weight: bold;
+  text-align: center;
 }
 
 .name-product {

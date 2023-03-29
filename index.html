@@ -8,9 +8,25 @@
     <link rel="stylesheet" href="./css/style.css" />
   </head>
   <body>
-    <input type="file" name="file" id="file" />
+    <div class="container">
+      <div class="function">
+        <input type="file" name="file" id="file" />
+
+        <select name="type" id="type">
+          <option value="qr">QR Code</option>
+          <option value="barcode128">BarCode 128</option>
+        </select>
+
+        <button id="btnOk" class="btn">OK</button>
+        <button onclick="window.print()" class="btn">In</button>
+      </div>
+    </div>
 
     <div class="result"></div>
+
+    <div class="test"></div>
+
+    <!-- <script src="./js/JsBarcode.all.min.js"></script> -->
     <script src="./js/function.js"></script>
   </body>
 </html>

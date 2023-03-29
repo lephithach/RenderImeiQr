@@ -164,41 +164,35 @@ const checkExtension = (file) => {
   return { err, message: "ok" };
 };
 
-const readFile = (file) => {
-  var result = [];
-  let reader = new FileReader();
-
-  reader.readAsText(file[0]);
-
-  // Set up a callback function to be called when the file has been read
-  reader.onload = () => {
-    // Access the file contents as a string
-    const fileContents = reader.result;
-    result = processCvs(fileContents);
-  };
-
-  // return result;
-};
-
 const barcode = (file) => {
   const { err, message } = checkExtension(file);
+
   if (err == false) {
-    let result = readFile(file);
+    let reader = new FileReader();
 
-    // Render HTML
-    let html = "";
+    reader.readAsText(file[0]);
 
-    result.forEach((item) => {
-      html += `
-          <div class="barcode-item">
-            <img src="https://bwipjs-api.metafloor.com/?bcid=code128&text=${item.Imei}&scale=2&rotate=N" />
-            <p class="imei-product">${item.Imei}</p>
-            <p class="name-product">${item.TenHang}</p>
-          </div>
-        `;
-    });
+    // Set up a callback function to be called when the file has been read
+    reader.onload = () => {
+      // Access the file contents as a string
+      const fileContents = reader.result;
+      let result = processCvs(fileContents);
 
-    resultEl.innerHTML = html.join("");
+      // Render HTML
+      let html = "";
+
+      result.forEach((item) => {
+        html += `
+            <div class="barcode-item">
+              <img src="https://bwipjs-api.metafloor.com/?bcid=code128&text=${item.Imei}&scale=2&rotate=N" />
+              <p class="imei-product">${item.Imei}</p>
+              <p class="name-product">${item.TenHang}</p>
+            </div>
+          `;
+      });
+
+      resultEl.innerHTML = html;
+    };
   } else {
     // Show alert
     alert(message);

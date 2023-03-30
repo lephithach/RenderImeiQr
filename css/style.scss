@@ -13,21 +13,76 @@
   .function {
     display: none;
   }
+
+  .result {
+    grid-template-columns: repeat(6, 3cm);
+    grid-template-rows: repeat(7, 3cm);
+    page-break-after: always;
+    gap: 3rem;
+  }
+}
+
+.container {
+  .function {
+    .c-input {
+      padding: 0.4rem 0.6rem;
+      border-radius: 0.3rem;
+      border: 1px solid rgba($color: #000000, $alpha: 0.2);
+    }
+
+    .btn {
+      padding: 0.4rem 0.6rem;
+      border: none;
+      cursor: pointer;
+      color: #fff;
+      border-radius: 0.3rem;
+
+      &.btn-primary {
+        background-color: blue;
+      }
+
+      &.btn-secondary {
+        background-color: green;
+      }
+    }
+  }
 }
 
 .result {
-  padding: 1.5cm;
+  padding: 1cm;
+  //   margin: 1.5cm;
   /* width: 210cm;
     height: auto; */
   width: 100%;
   height: 100%;
   page-break-after: always;
   display: grid;
-  gap: 3rem;
-  grid-template-columns: repeat(6, 4cm);
-  grid-template-rows: repeat(8, 4cm);
+  gap: 2rem;
+  grid-template-columns: repeat(6, 3cm);
+  grid-template-rows: repeat(7, 3cm);
+
+  .item {
+    width: 100%;
+    height: 100%;
+
+    img {
+      width: 100%;
+      height: 3cm;
+    }
+  }
+
+  .name-product {
+    font-size: 0.6rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal;
+  }
 
   &.barcode {
+    // padding: 1cm;
     gap: 4rem;
     grid-template-columns: repeat(3, 6cm);
     grid-template-rows: repeat(6, 4cm);
@@ -54,6 +109,7 @@
     width: 8cm;
     height: 3cm;
     grid-template-columns: repeat(2, 4cm);
+    grid-template-rows: repeat(1, 3cm);
     gap: 1rem;
 
     .barcode-item {
@@ -70,20 +126,5 @@
         text-align: center;
       }
     }
-  }
-
-  .item {
-    width: 100%;
-    height: 100%;
-  }
-
-  .name-product {
-    font-size: 0.8rem;
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: normal;
   }
 }

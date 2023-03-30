@@ -96,47 +96,39 @@ const processCvs = (data) => {
   return result;
 };
 
-// const qrcode = (file) => {
-//   let reader = new FileReader();
-//   let getNameFile = file[0].name;
-//   let getNameArray = getNameFile.split(".");
+const qrcode = (file) => {
+  const { err, message } = checkExtension(file);
 
-//   for (let i = 1; i <= getNameArray.length; i++) {
-//     // Loop array name split
-//     if (i < getNameArray.length) {
-//       let fileExtension = getNameArray[i];
+  if (err == false) {
+    let reader = new FileReader();
 
-//       // check match extension csv
-//       if (fileExtension != "csv") {
-//         alert("File này không được hỗ trợ, vui lòng chọn file CSV");
-//       } else {
-//         // Set up the reader to read the file as text
-//         reader.readAsText(file[0]);
+    reader.readAsText(file[0]);
 
-//         // Set up a callback function to be called when the file has been read
-//         reader.onload = () => {
-//           // Access the file contents as a string
-//           const fileContents = reader.result;
-//           let result = processCvs(fileContents);
+    // Set up a callback function to be called when the file has been read
+    reader.onload = () => {
+      // Access the file contents as a string
+      const fileContents = reader.result;
+      let result = processCvs(fileContents);
 
-//           // Render HTML
-//           let html = "";
+      // Render HTML
+      let html = "";
 
-//           result.forEach((item) => {
-//             html += `
-//         <div class="item">
-//             <img src="https://chart.googleapis.com/chart?chs=150x150&cht=qr&chl=${item.Imei}">
-//             <p class="name-product">${item.TenHang}</p>
-//         </div>
-//         `;
+      result.forEach((item) => {
+        html += `
+            <div class="item">
+                <img src="https://chart.googleapis.com/chart?chs=150x150&cht=qr&chl=${item.Imei}">
+                <p class="name-product">${item.TenHang}</p>
+            </div>
+          `;
+      });
 
-//             resultEl.innerHTML = html;
-//           });
-//         };
-//       }
-//     }
-//   }
-// };
+      resultEl.innerHTML = html;
+    };
+  } else {
+    // Show alert
+    alert(message);
+  }
+};
 
 const checkExtension = (file) => {
   let err = false;
@@ -199,49 +191,6 @@ const barcode = (file) => {
   }
 };
 
-// const barcode = (file) => {
-//   let reader = new FileReader();
-//   let getNameFile = file[0].name;
-//   let getNameArray = getNameFile.split(".");
-
-//   for (let i = 1; i <= getNameArray.length; i++) {
-//     // Loop array name split
-//     if (i < getNameArray.length) {
-//       let fileExtension = getNameArray[i];
-
-//       // check match extension csv
-//       if (fileExtension != "csv") {
-//         alert("File này không được hỗ trợ, vui lòng chọn file CSV");
-//       } else {
-//         // Set up the reader to read the file as text
-//         reader.readAsText(file[0]);
-
-//         // Set up a callback function to be called when the file has been read
-//         reader.onload = () => {
-//           // Access the file contents as a string
-//           const fileContents = reader.result;
-//           let result = processCvs(fileContents);
-
-//           // Render HTML
-//           let html = "";
-
-//           result.forEach((item) => {
-//             html += `
-//               <div class="barcode-item">
-//                 <img src="https://bwipjs-api.metafloor.com/?bcid=code128&text=${item.Imei}&scale=2&rotate=N" />
-//                 <p class="imei-product">${item.Imei}</p>
-//                 <p class="name-product">${item.TenHang}</p>
-//               </div>
-//               `;
-
-//             resultEl.innerHTML = html;
-//           });
-//         };
-//       }
-//     }
-//   }
-// };
-
 btnOk.addEventListener("click", (e) => {
   let file = getFile.files;
 
@@ -250,7 +199,7 @@ btnOk.addEventListener("click", (e) => {
 
   switch (typeEl.value) {
     case "qr":
-      // qrcode(file);
+      qrcode(file);
       break;
 
     case "barcode128":
@@ -262,56 +211,3 @@ btnOk.addEventListener("click", (e) => {
       break;
   }
 });
-
-// getFile.addEventListener("change", (e) => {
-// });
-
-// fetch("../data/chitiettontheoIMEI.csv")
-//   .then((response) => response.text())
-//   .then((data) => {
-//     const rows = data.split("\n");
-//     let header = rows[0].split(",");
-
-//     // Set new header
-//     let newHeader = [];
-//     header.forEach((header) => {
-//       let ps = header.replace(/\r/g, "");
-
-//       newHeader.push(ps);
-//     });
-
-//     header = newHeader;
-
-//     const result = [];
-
-//     for (let i = 1; i < rows.length; i++) {
-//       const row = rows[i].split(",");
-
-//       if (row.length === header.length) {
-//         const obj = {};
-
-//         for (let j = 0; j < header.length; j++) {
-//           obj[header[j]] = row[j];
-//         }
-
-//         result.push(obj);
-//       }
-//     }
-
-//     console.log(result);
-
-//     let html = "";
-
-//     result.forEach((item) => {
-//       // console.log(item.TEN);
-//       html += `
-//         <div class="item">
-//             <img src="https://chart.googleapis.com/chart?chs=150x150&cht=qr&chl=${item.IMEI}">
-//             <p class="name-product">${item.TEN}</p>
-//         </div>
-//         `;
-
-//       resultEl.innerHTML = html;
-//     });
-//   })
-//   .catch((error) => console.error(error));

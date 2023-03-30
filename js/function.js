@@ -196,6 +196,7 @@ btnOk.addEventListener("click", (e) => {
 
   resultEl.classList.remove("barcode");
   resultEl.classList.remove("qr");
+  resultEl.classList.remove("in-tem");
 
   switch (typeEl.value) {
     case "qr":
@@ -205,6 +206,11 @@ btnOk.addEventListener("click", (e) => {
     case "barcode128":
       barcode(file);
       resultEl.classList.add("barcode");
+      break;
+
+    case "barcode128Tem":
+      barcode(file);
+      resultEl.classList.add("in-tem");
       break;
 
     default:

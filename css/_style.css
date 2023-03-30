@@ -9,14 +9,16 @@
   @page {
     size: A4;
   }
+
   .function {
     display: none;
   }
 }
+
 .result {
   padding: 1.5cm;
   /* width: 210cm;
-    height: auto; */
+  height: auto; */
   width: 100%;
   height: 100%;
   page-break-after: always;
@@ -25,47 +27,34 @@
   grid-template-columns: repeat(6, 4cm);
   grid-template-rows: repeat(8, 4cm);
 }
+
 .result.barcode {
   gap: 4rem;
   grid-template-columns: repeat(3, 6cm);
   grid-template-rows: repeat(6, 4cm);
 }
-.result.barcode .barcode-item {
+
+.barcode-item {
   height: min-content;
 }
-.result.barcode .barcode-item img {
+
+.barcode img {
   width: 100%;
   height: 1.5cm;
 }
-.result.barcode .barcode-item .imei-product {
-  font-size: 0.8rem;
-  font-weight: bold;
-  text-align: center;
-}
-.result.in-tem {
-  padding: 0.2cm;
-  width: 8cm;
-  height: 3cm;
-  grid-template-columns: repeat(2, 4cm);
-  gap: 1rem;
-}
-.result.in-tem .barcode-item {
-  height: min-content;
-}
-.result.in-tem .barcode-item img {
-  width: 100%;
-  height: 1.5cm;
-}
-.result.in-tem .barcode-item .imei-product {
-  font-size: 0.8rem;
-  font-weight: bold;
-  text-align: center;
-}
-.result .item {
+
+.item {
   width: 100%;
   height: 100%;
 }
-.result .name-product {
+
+.imei-product {
+  font-size: 0.8rem;
+  font-weight: bold;
+  text-align: center;
+}
+
+.name-product {
   font-size: 0.8rem;
   display: -webkit-box;
   -webkit-line-clamp: 3;
@@ -74,5 +63,3 @@
   text-overflow: ellipsis;
   white-space: normal;
 }
-
-/*# sourceMappingURL=style.css.map */

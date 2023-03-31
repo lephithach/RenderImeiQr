@@ -12,6 +12,9 @@
 
   .result {
     &.in-tem {
+      width: 8cm;
+      height: 3cm;
+
       @page {
         size: 8cm 3cm;
       }

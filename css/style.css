@@ -9,6 +9,12 @@
   @page {
     size: A4;
   }
+  .result.in-tem {
+    width: 8cm;
+    height: 3cm;
+    grid-template-columns: repeat(2, 4cm);
+    grid-template-rows: repeat(1, 3cm);
+  }
   @page {
     .result.in-tem {
       size: 8cm 3cm;

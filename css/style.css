@@ -9,6 +9,11 @@
   @page {
     size: A4;
   }
+  @page {
+    .result.in-tem {
+      size: 8cm 3cm;
+    }
+  }
   .function {
     display: none;
   }

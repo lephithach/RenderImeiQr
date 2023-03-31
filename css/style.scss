@@ -10,6 +10,14 @@
     size: A4;
   }
 
+  .result {
+    &.in-tem {
+      @page {
+        size: 8cm 3cm;
+      }
+    }
+  }
+
   .function {
     display: none;
   }

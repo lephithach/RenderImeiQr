@@ -132,6 +132,12 @@ const qrcode = (file) => {
 
 const checkExtension = (file) => {
   let err = false;
+
+  // Check exits file
+  if (file.length < 1) {
+    return { err: true, message: "Vui lòng chọn file trước khi chạy" };
+  }
+
   let getNameFile = file[0].name;
   let getNameArray = getNameFile.split(".");
 
@@ -142,13 +148,10 @@ const checkExtension = (file) => {
 
       // check match extension csv
       if (fileExtension != "csv") {
-        err = true;
-
         return {
-          err,
+          err: true,
           message: "File này không được hỗ trợ, vui lòng chọn file CSV",
         };
-        // alert("File này không được hỗ trợ, vui lòng chọn file CSV");
       }
     }
   }

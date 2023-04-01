@@ -4,26 +4,47 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Render IMEI</title>
+    <meta
+      name="description"
+      content="Tạo nhanh mã QR bắn IMEI dành riêng cho bạn"
+    />
+    <title>Render QR IMEI | Phi Thạch</title>
+    <link rel="shortcut icon" href="./images/fav.ico" type="image/x-icon" />
     <link rel="stylesheet" href="./css/style.css" />
   </head>
   <body>
     <div class="container">
+      <h1 class="title-page">RENDER QR IMEI</h1>
+
       <div class="function">
-        <input type="file" name="file" id="file" accept=".csv" />
+        <div class="form-group">
+          <label for="file">Chọn File:</label>
+          <input
+            type="file"
+            name="file"
+            id="file"
+            class="c-input"
+            accept=".csv"
+          />
+        </div>
 
-        <select name="type" id="type" class="c-input">
-          <option value="qr">QR Code</option>
-          <option value="barcode128">BarCode 128</option>
-          <option value="barcode128Tem">BarCode 128 (In Tem)</option>
-        </select>
+        <div class="form-group">
+          <label for="type">Loại:</label>
+          <select name="type" id="type" class="c-input">
+            <option value="qr">QR Code</option>
+            <option value="barcode128">BarCode 128</option>
+            <!-- <option value="barcode128Tem">BarCode 128 (In Tem)</option> -->
+          </select>
+        </div>
 
-        <button id="btnOk" class="btn btn-primary">OK</button>
+        <button id="btnOk" class="btn btn-primary">Chạy</button>
         <button onclick="window.print()" class="btn btn-secondary">In</button>
       </div>
-    </div>
 
-    <div class="result"></div>
+      <div class="result">
+        <!-- Render with JS -->
+      </div>
+    </div>
 
     <script src="./js/function.js"></script>
   </body>

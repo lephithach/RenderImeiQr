@@ -1,50 +1,107 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: "Roboto", sans-serif;
+}
+
+body {
+  background-color: #fafafa;
 }
 
 @media print {
   /* Set the paper size to A4 */
   @page {
-    size: A4;
+    // size: A4 landscape;
+    size: A4 portrait;
   }
 
-  .result {
-    &.in-tem {
-      width: 8cm;
-      height: 3cm;
-      grid-template-columns: repeat(2, 4cm);
-      grid-template-rows: repeat(1, 3cm);
+  @page :left {
+    margin-left: 1cm;
+  }
 
-      @page {
-        size: 8cm 3cm;
-      }
+  @page :right {
+    margin-left: 1cm;
+
+    @bottom-right {
+      content: counter(page);
     }
   }
 
-  .function {
-    display: none;
-  }
+  .container {
+    width: 210cm !important;
+    height: auto;
+    margin: 0;
 
-  .result {
-    grid-template-columns: repeat(6, 3cm);
-    grid-template-rows: repeat(7, 3cm);
-    page-break-after: always;
-    gap: 3rem;
+    h1 {
+      display: none;
+    }
+
+    .result {
+      grid-template-columns: repeat(5, 3cm);
+      page-break-after: auto;
+      gap: 2rem 3rem;
+      page-break-after: auto;
+      margin: 0;
+
+      &.barcode {
+        gap: 3rem 4rem;
+        grid-template-columns: repeat(3, 5cm);
+      }
+
+      &.in-tem {
+        width: 8cm;
+        height: 3cm;
+        grid-template-columns: repeat(2, 4cm);
+        grid-template-rows: repeat(1, 3cm);
+
+        @page {
+          size: 8cm 3cm;
+        }
+      }
+    }
+
+    .function {
+      display: none !important;
+    }
   }
 }
 
 .container {
+  margin: 0 auto;
+  padding: 0.5rem 0;
+  max-width: 800px;
+  background-color: #fff;
+
+  .title-page {
+    text-align: center;
+    padding: 0.5rem 0;
+  }
+
   .function {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+
+    .form-group {
+      label {
+        font-weight: bold;
+      }
+    }
+
     .c-input {
       padding: 0.4rem 0.6rem;
       border-radius: 0.3rem;
       border: 1px solid rgba($color: #000000, $alpha: 0.2);
+      display: inline-block;
+      overflow: hidden;
     }
 
     .btn {
-      padding: 0.4rem 0.6rem;
+      padding: 0.4rem 0.8rem;
       border: none;
       cursor: pointer;
       color: #fff;
@@ -62,21 +119,15 @@
 }
 
 .result {
-  padding: 1cm;
-  //   margin: 1.5cm;
-  /* width: 210cm;
-    height: auto; */
-  width: 100%;
-  height: 100%;
-  page-break-after: always;
   display: grid;
+  justify-content: center;
   gap: 2rem;
-  grid-template-columns: repeat(6, 3cm);
-  grid-template-rows: repeat(7, 3cm);
+  grid-template-columns: repeat(5, 3cm);
+  margin-top: 1rem;
 
   .item {
-    width: 100%;
-    height: 100%;
+    width: 3cm;
+    height: 4cm;
 
     img {
       width: 100%;
@@ -95,21 +146,19 @@
   }
 
   &.barcode {
-    // padding: 1cm;
     gap: 4rem;
     grid-template-columns: repeat(3, 6cm);
-    grid-template-rows: repeat(6, 4cm);
 
     .barcode-item {
       height: min-content;
 
       img {
         width: 100%;
-        height: 1.5cm;
+        height: 1cm;
       }
 
       .imei-product {
-        font-size: 0.8rem;
+        font-size: 0.75rem;
         font-weight: bold;
         text-align: center;
       }

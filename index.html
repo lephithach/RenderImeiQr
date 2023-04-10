@@ -8,13 +8,63 @@
       name="description"
       content="Tạo nhanh mã QR bắn IMEI dành riêng cho bạn"
     />
-    <title>Render QR IMEI | Phi Thạch</title>
+    <title>Render IMEI | Phi Thạch</title>
     <link rel="shortcut icon" href="./images/fav.ico" type="image/x-icon" />
     <link rel="stylesheet" href="./css/style.css" />
   </head>
   <body>
     <div class="container">
-      <h1 class="title-page">RENDER QR IMEI</h1>
+      <header class="header">
+        <h1 class="title-page"><a href="./">RENDER IMEI</a></h1>
+
+        <div class="social">
+          <p>
+            <a href="https://m.me/lephiithach" class="link" target="_blank"
+              >Phi Thạch</a
+            >
+          </p>
+
+          <ul class="list-item">
+            <li class="item">
+              <a
+                href="https://t.me/VKF_PhiThach_Senpai"
+                class="link"
+                target="_blank"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  fill="currentColor"
+                  class="bi bi-telegram"
+                  viewBox="0 0 16 16"
+                >
+                  <path
+                    d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.287 5.906c-.778.324-2.334.994-4.666 2.01-.378.15-.577.298-.595.442-.03.243.275.339.69.47l.175.055c.408.133.958.288 1.243.294.26.006.549-.1.868-.32 2.179-1.471 3.304-2.214 3.374-2.23.05-.012.12-.026.166.016.047.041.042.12.037.141-.03.129-1.227 1.241-1.846 1.817-.193.18-.33.307-.358.336a8.154 8.154 0 0 1-.188.186c-.38.366-.664.64.015 1.088.327.216.589.393.85.571.284.194.568.387.936.629.093.06.183.125.27.187.331.236.63.448.997.414.214-.02.435-.22.547-.82.265-1.417.786-4.486.906-5.751a1.426 1.426 0 0 0-.013-.315.337.337 0 0 0-.114-.217.526.526 0 0 0-.31-.093c-.3.005-.763.166-2.984 1.09z"
+                  />
+                </svg>
+              </a>
+            </li>
+
+            <li class="item">
+              <a href="https://m.me/lephiithach" class="link" target="_blank">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  fill="currentColor"
+                  class="bi bi-messenger"
+                  viewBox="0 0 16 16"
+                >
+                  <path
+                    d="M0 7.76C0 3.301 3.493 0 8 0s8 3.301 8 7.76-3.493 7.76-8 7.76c-.81 0-1.586-.107-2.316-.307a.639.639 0 0 0-.427.03l-1.588.702a.64.64 0 0 1-.898-.566l-.044-1.423a.639.639 0 0 0-.215-.456C.956 12.108 0 10.092 0 7.76zm5.546-1.459-2.35 3.728c-.225.358.214.761.551.506l2.525-1.916a.48.48 0 0 1 .578-.002l1.869 1.402a1.2 1.2 0 0 0 1.735-.32l2.35-3.728c.226-.358-.214-.761-.551-.506L9.728 7.381a.48.48 0 0 1-.578.002L7.281 5.98a1.2 1.2 0 0 0-1.735.32z"
+                  />
+                </svg>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </header>
 
       <div class="function">
         <div class="form-group">
@@ -38,14 +88,28 @@
         </div>
 
         <button id="btnOk" class="btn btn-primary">Chạy</button>
-        <button onclick="window.print()" class="btn btn-secondary">In</button>
+        <button onclick="window.print()" class="btn btn-secondary">
+          In A4
+        </button>
       </div>
 
       <div class="result">
         <!-- Render with JS -->
       </div>
+
+      <div class="footer-print">
+        <p class="date-print">&nbsp;</p>
+        <p class="author-print">Tạo bởi Phi Thạch</p>
+      </div>
     </div>
 
     <script src="./js/function.js"></script>
+    <script>
+      const date = new Date();
+      const dateEl = document.querySelector(".date-print");
+      dateEl.innerHTML = `
+        In ngày: ${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()} 
+      `;
+    </script>
   </body>
 </html>

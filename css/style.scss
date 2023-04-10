@@ -1,10 +1,22 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
 
+// Reset CSS
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   font-family: "Roboto", sans-serif;
+}
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  color: #000;
+  text-decoration: none;
 }
 
 body {
@@ -35,8 +47,9 @@ body {
     height: auto;
     margin: 0;
 
-    h1 {
+    .header {
       display: none;
+      // visibility: hidden;
     }
 
     .result {
@@ -66,6 +79,10 @@ body {
     .function {
       display: none !important;
     }
+
+    .footer-print {
+      display: flex !important;
+    }
   }
 }
 
@@ -75,9 +92,41 @@ body {
   max-width: 800px;
   background-color: #fff;
 
-  .title-page {
-    text-align: center;
-    padding: 0.5rem 0;
+  .footer-print {
+    max-width: 800px;
+    margin: 0 auto;
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0.5rem;
+    display: none;
+    justify-content: space-between;
+  }
+
+  header {
+    margin: 0 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid rgba($color: #000000, $alpha: 0.2);
+
+    .title-page {
+      text-align: center;
+      padding: 0.5rem 0;
+      font-size: 2.2rem;
+    }
+
+    .social {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+
+      .list-item {
+        display: flex;
+        justify-content: flex-end;
+        gap: 0.5rem;
+      }
+    }
   }
 
   .function {
@@ -85,6 +134,7 @@ body {
     justify-content: center;
     align-items: center;
     gap: 1rem;
+    margin-top: 0.5rem;
 
     .form-group {
       label {
@@ -146,7 +196,7 @@ body {
   }
 
   &.barcode {
-    gap: 4rem;
+    gap: 3rem 2rem;
     grid-template-columns: repeat(3, 6cm);
 
     .barcode-item {

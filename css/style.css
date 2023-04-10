@@ -6,6 +6,17 @@
   font-family: "Roboto", sans-serif;
 }
 
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  color: #000;
+  text-decoration: none;
+}
+
 body {
   background-color: #fafafa;
 }
@@ -29,7 +40,7 @@ body {
     height: auto;
     margin: 0;
   }
-  .container h1 {
+  .container .header {
     display: none;
   }
   .container .result {
@@ -57,6 +68,9 @@ body {
   .container .function {
     display: none !important;
   }
+  .container .footer-print {
+    display: flex !important;
+  }
 }
 .container {
   margin: 0 auto;
@@ -64,15 +78,44 @@ body {
   max-width: 800px;
   background-color: #fff;
 }
-.container .title-page {
+.container .footer-print {
+  max-width: 800px;
+  margin: 0 auto;
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0.5rem;
+  display: none;
+  justify-content: space-between;
+}
+.container header {
+  margin: 0 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+.container header .title-page {
   text-align: center;
   padding: 0.5rem 0;
+  font-size: 2.2rem;
+}
+.container header .social {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.container header .social .list-item {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
 }
 .container .function {
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 1rem;
+  margin-top: 0.5rem;
 }
 .container .function .form-group label {
   font-weight: bold;
@@ -123,7 +166,7 @@ body {
   white-space: normal;
 }
 .result.barcode {
-  gap: 4rem;
+  gap: 3rem 2rem;
   grid-template-columns: repeat(3, 6cm);
 }
 .result.barcode .barcode-item {

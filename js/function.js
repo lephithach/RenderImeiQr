@@ -1,7 +1,9 @@
 const getFile = document.querySelector("#file");
 const resultEl = document.querySelector(".result");
 const typeEl = document.querySelector("#type");
+const skipItemNoExistEl = document.querySelector("#skip-item-no-exist");
 const btnOk = document.querySelector("#btnOk");
+const modalEl = document.querySelector(".modal");
 
 function removeVietnameseTones(str) {
   str = str.replace(/à|á|ạ|ả|ã|â|ầ|ấ|ậ|ẩ|ẫ|ă|ằ|ắ|ặ|ẳ|ẵ/g, "a");
@@ -96,40 +98,6 @@ const processCvs = (data) => {
   return result;
 };
 
-const qrcode = (file) => {
-  const { err, message } = checkExtension(file);
-
-  if (err == false) {
-    let reader = new FileReader();
-
-    reader.readAsText(file[0]);
-
-    // Set up a callback function to be called when the file has been read
-    reader.onload = () => {
-      // Access the file contents as a string
-      const fileContents = reader.result;
-      let result = processCvs(fileContents);
-
-      // Render HTML
-      let html = "";
-
-      result.forEach((item) => {
-        html += `
-            <div class="item">
-                <img src="https://chart.googleapis.com/chart?chs=150x150&cht=qr&chl=${item.Imei}">
-                <p class="name-product">${item.TenHang}</p>
-            </div>
-          `;
-      });
-
-      resultEl.innerHTML = html;
-    };
-  } else {
-    // Show alert
-    alert(message);
-  }
-};
-
 const checkExtension = (file) => {
   let err = false;
 
@@ -159,8 +127,9 @@ const checkExtension = (file) => {
   return { err, message: "ok" };
 };
 
-const barcode = (file) => {
+const qrcode = (file, skipItemNoExistEl) => {
   const { err, message } = checkExtension(file);
+  let skipItemNoExist = skipItemNoExistEl.checked ?? false;
 
   if (err == false) {
     let reader = new FileReader();
@@ -177,6 +146,55 @@ const barcode = (file) => {
       let html = "";
 
       result.forEach((item) => {
+        // process check item skip no exist
+        if (skipItemNoExist == true) {
+          if (item.DiDuong == "1") {
+            return;
+          }
+        }
+
+        html += `
+            <div class="item">
+                <img src="https://chart.googleapis.com/chart?chs=150x150&cht=qr&chl=${item.Imei}">
+                <p class="name-product">${item.TenHang}</p>
+            </div>
+          `;
+      });
+
+      resultEl.innerHTML = html;
+    };
+  } else {
+    // Show alert
+    alert(message);
+  }
+};
+
+const barcode = (file, skipItemNoExistEl) => {
+  const { err, message } = checkExtension(file);
+  let skipItemNoExist = skipItemNoExistEl.checked ?? false;
+
+  if (err == false) {
+    let reader = new FileReader();
+
+    reader.readAsText(file[0]);
+
+    // Set up a callback function to be called when the file has been read
+    reader.onload = () => {
+      // Access the file contents as a string
+      const fileContents = reader.result;
+      let result = processCvs(fileContents);
+
+      // Render HTML
+      let html = "";
+
+      result.forEach((item) => {
+        // process check item skip no exist
+        if (skipItemNoExist == true) {
+          if (item.DiDuong == "1") {
+            return;
+          }
+        }
+
         html += `
             <div class="barcode-item">
               <img src="https://bwipjs-api.metafloor.com/?bcid=code128&text=${item.Imei}&scale=2&rotate=N" />
@@ -203,11 +221,11 @@ btnOk.addEventListener("click", (e) => {
 
   switch (typeEl.value) {
     case "qr":
-      qrcode(file);
+      qrcode(file, skipItemNoExistEl);
       break;
 
     case "barcode128":
-      barcode(file);
+      barcode(file, skipItemNoExistEl);
       resultEl.classList.add("barcode");
       break;
 
@@ -219,4 +237,30 @@ btnOk.addEventListener("click", (e) => {
     default:
       break;
   }
+
+  let titleModal = modalEl.querySelector(".title");
+  let messageModal = modalEl.querySelector(".message");
+
+  // Show modal
+  modalEl.classList.remove("hidden");
+  titleModal.innerText = `LOADING`;
+  messageModal.innerHTML = `Chờ đợi là hạnh phúc! <br /> Quá trình hiển thị mã quét phụ thuộc vào tốc độ mạng của bạn.`;
+
+  setTimeout(() => {
+    window.scrollTo({
+      left: 0,
+      top: document.body.scrollHeight,
+      behavior: "smooth",
+    });
+  }, 1000);
+
+  // Close modal
+  setTimeout(() => {
+    modalEl.classList.add("hidden");
+    window.scrollTo({
+      left: 0,
+      top: 0,
+      behavior: "smooth",
+    });
+  }, 3000);
 });

@@ -13,6 +13,13 @@
     <link rel="stylesheet" href="./css/style.css" />
   </head>
   <body>
+    <div class="modal hidden">
+      <div class="container">
+        <h1 class="title">&nbsp;</h1>
+        <p class="message">&nbsp;</p>
+      </div>
+    </div>
+
     <div class="container">
       <header class="header">
         <h1 class="title-page"><a href="./">RENDER IMEI</a></h1>
@@ -87,10 +94,22 @@
           </select>
         </div>
 
-        <button id="btnOk" class="btn btn-primary">Chạy</button>
-        <button onclick="window.print()" class="btn btn-secondary">
-          In A4
-        </button>
+        <div class="form-group">
+          <input
+            type="checkbox"
+            class="c-input"
+            name="skip-item-no-exist"
+            id="skip-item-no-exist"
+          />
+          <label for="skip-item-no-exist">Bỏ qua đi đường</label>
+        </div>
+
+        <div class="form-group">
+          <button id="btnOk" class="btn btn-primary">Chạy</button>
+          <button onclick="window.print()" class="btn btn-secondary">
+            In A4
+          </button>
+        </div>
       </div>
 
       <div class="result">

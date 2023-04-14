@@ -72,6 +72,33 @@ body {
     display: flex !important;
   }
 }
+.modal {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.85);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #000;
+  transition: all 0.25s ease-in-out;
+}
+.modal.hidden {
+  visibility: hidden;
+  opacity: 0;
+}
+.modal .container {
+  width: 250px;
+  max-width: 400px;
+  background-color: #fff;
+  text-align: center;
+  border-radius: 10px;
+  padding: 0.5rem 1rem;
+}
+.modal .container p {
+  margin-top: 0.5rem;
+  line-height: 1.5;
+}
+
 .container {
   margin: 0 auto;
   padding: 0.5rem 0;
@@ -112,6 +139,7 @@ body {
 }
 .container .function {
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
   align-items: center;
   gap: 1rem;
